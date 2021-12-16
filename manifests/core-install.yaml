@@ -3057,6 +3057,8 @@ spec:
           name: argocd-repo-server-tls
         - mountPath: /tmp
           name: tmp
+        - mountPath: /home/argocd/.ssh
+          name: ssh
         - mountPath: /helm-working-dir
           name: helm-working-dir
         - mountPath: /home/argocd/cmp-server/plugins
@@ -3086,6 +3088,8 @@ spec:
         name: gpg-keyring
       - emptyDir: {}
         name: tmp
+      - emptyDir: {}
+        name: ssh
       - emptyDir: {}
         name: helm-working-dir
       - name: argocd-repo-server-tls

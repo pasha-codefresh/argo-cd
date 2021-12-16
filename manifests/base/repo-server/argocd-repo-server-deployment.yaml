@@ -140,6 +140,8 @@ spec:
           mountPath: /app/config/reposerver/tls
         - name: tmp
           mountPath: /tmp
+        - name: ssh
+          mountPath: /home/argocd/.ssh
         - mountPath: /helm-working-dir
           name: helm-working-dir
         - mountPath: /home/argocd/cmp-server/plugins
@@ -168,6 +170,8 @@ spec:
         - name: gpg-keyring
           emptyDir: {}
         - name: tmp
+          emptyDir: {}
+        - name: ssh
           emptyDir: {}
         - name: helm-working-dir
           emptyDir: {}
