@@ -24,9 +24,7 @@ func initConfig() {
 
 // NewCommand returns a new instance of an argocd command
 func NewCommand() *cobra.Command {
-
 	var generateOpts generator.GenerateOpts
-
 	var command = &cobra.Command{
 		Use:   cliName,
 		Short: "Generator for argocd resources",
@@ -35,13 +33,10 @@ func NewCommand() *cobra.Command {
 		},
 		DisableAutoGenTag: true,
 	}
-
 	command.AddCommand(NewProjectCommand(&generateOpts))
 	command.AddCommand(NewApplicationCommand(&generateOpts))
 	command.AddCommand(NewAllResourcesCommand(&generateOpts))
 	command.AddCommand(NewReposCommand(&generateOpts))
-
-	command.PersistentFlags().IntVar(&generateOpts.Samples, "samples", 0, "Amount of samples")
 	command.PersistentFlags().StringVar(&generateOpts.Namespace, "kube-namespace", "argocd", "Name of the namespace on which Argo agent should be installed [$KUBE_NAMESPACE]")
 	return command
 }
