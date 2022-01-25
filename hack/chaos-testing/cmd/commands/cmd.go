@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	cliName = "argocd-generator"
+	cliName = "argocd-chaos-testing"
 )
 
 func init() {
@@ -28,19 +28,13 @@ func NewCommand() *cobra.Command {
 
 	var command = &cobra.Command{
 		Use:   cliName,
-		Short: "Generator for argocd resources",
+		Short: "Chaos testing",
 		Run: func(c *cobra.Command, args []string) {
-			c.HelpFunc()(c, args)
+
 		},
 		DisableAutoGenTag: true,
 	}
 
-	command.AddCommand(NewGenerateCommand(&generateOpts))
-
 	command.PersistentFlags().StringVar(&generateOpts.Namespace, "kube-namespace", "argocd", "Name of the namespace on which Argo agent should be installed [$KUBE_NAMESPACE]")
 	return command
-}
-
-func NewGenerateCommand(opts *util.GenerateOpts) *cobra.Command {
-	return nil
 }
