@@ -1,5 +1,29 @@
 # Changelog
 
+## v2.7.0 (2023-03-18)
+
+### Bug fixes
+
+- feat: support application level extensions (#9923)
+- feat: support multiple extensions per resource group/kind (#9834)
+- fix: extensions is not loading for ConfigMap/Pods (#10010)
+- fix: upgrade moment from 2.29.2 to 2.29.3 (#9330)
+- fix: skip redirect url validation when it's the base href (#10058) (#10116)
+- fix: avoid CVE-2022-28948 (#10093)
+- fix: Set HOST_ARCH for yarn build from platform (#10018)
+
+### Other changes
+
+- chore(deps): bump moment from 2.29.3 to 2.29.4 in /ui (#9897)
+- docs: add OpenSSH breaking change notes (#10104)
+- chore: update parse-url (#10101)
+- docs: add api field example in the appset security doc (#10087)
+- chore: update redis to 7.0.4 avoid CVE-2022-30065 (#10059)
+- docs: add argocd-server grpc metric usage (#10007)
+- chore: upgrade Dex to 2.32.0 (#10036) (#10042)
+- chore: update redis to avoid CVE-2022-2097 (#10031)
+- chore: update haproxy to 2.0.29 for redis-ha (#10045)
+
 ## v2.4.8 (2022-07-29)
 
 ### Bug fixes
