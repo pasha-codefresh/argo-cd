@@ -44,6 +44,9 @@ type Creds struct {
 	InsecureSkipVerify bool
 }
 
+// 100 KB
+var chartMaxSize int64 = 1 * 1000
+
 type indexCache interface {
 	SetHelmIndex(repo string, indexData []byte) error
 	GetHelmIndex(repo string, indexData *[]byte) error
@@ -195,6 +198,15 @@ func (c *nativeHelmChart) ExtractChart(chart string, version string, passCredent
 		if len(infos) != 1 {
 			return "", nil, fmt.Errorf("expected 1 file, found %v", len(infos))
 		}
+		fileSize, err := extractFileSize(filepath.Join(tempDest, infos[0].Name()))
+		if err != nil {
+			return "", nil, err
+		}
+		if fileSize > chartMaxSize {
+			fmt.Printf("chart is big, size: %d B", fileSize)
+			return "", nil, errors.New("chart is very big")
+		}
+
 		err = os.Rename(filepath.Join(tempDest, infos[0].Name()), cachedChartPath)
 		if err != nil {
 			return "", nil, err
@@ -211,6 +223,15 @@ func (c *nativeHelmChart) ExtractChart(chart string, version string, passCredent
 	return path.Join(tempDir, normalizeChartName(chart)), argoio.NewCloser(func() error {
 		return os.RemoveAll(tempDir)
 	}), nil
+}
+
+func extractFileSize(path string) (int64, error) {
+	// Get the size of the file using the "du" command
+	stat, err := os.Stat(path)
+	if err != nil {
+		return 0, err
+	}
+	return stat.Size(), nil
 }
 
 func (c *nativeHelmChart) GetIndex(noCache bool) (*Index, error) {
