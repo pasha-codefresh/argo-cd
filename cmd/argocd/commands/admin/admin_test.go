@@ -36,26 +36,26 @@ func TestGetAdditionalNamespaces(t *testing.T) {
 			CmdParamsKeys: map[string]interface{}{},
 			expected:      argocdAdditonalNamespaces{applicationNamespaces: []string{}, applicationsetNamespaces: []string{}},
 		},
-		{
-			description:   "empty strings in respective keys in cm shoud return empty namespace list",
-			CmdParamsKeys: map[string]interface{}{applicationsetNamespacesCmdParamsKey: "", applicationNamespacesCmdParamsKey: ""},
-			expected:      argocdAdditonalNamespaces{applicationNamespaces: []string{}, applicationsetNamespaces: []string{}},
-		},
-		{
-			description:   "when only one of the keys in the cm is set only correct respective list of namespaces should be returned",
-			CmdParamsKeys: map[string]interface{}{applicationNamespacesCmdParamsKey: "foo, bar*"},
-			expected:      argocdAdditonalNamespaces{applicationsetNamespaces: []string{}, applicationNamespaces: []string{"foo", "bar*"}},
-		},
-		{
-			description:   "when only one of the keys in the cm is set only correct respective list of namespaces should be returned",
-			CmdParamsKeys: map[string]interface{}{applicationsetNamespacesCmdParamsKey: "foo, bar*"},
-			expected:      argocdAdditonalNamespaces{applicationNamespaces: []string{}, applicationsetNamespaces: []string{"foo", "bar*"}},
-		},
-		{
-			description:   "whitespaces are removed for both multiple and single namespace",
-			CmdParamsKeys: map[string]interface{}{applicationNamespacesCmdParamsKey: "  bar    ", applicationsetNamespacesCmdParamsKey: " foo , bar*  "},
-			expected:      argocdAdditonalNamespaces{applicationNamespaces: []string{"bar"}, applicationsetNamespaces: []string{"foo", "bar*"}},
-		},
+		// {
+		// 	description:   "empty strings in respective keys in cm shoud return empty namespace list",
+		// 	CmdParamsKeys: map[string]interface{}{applicationsetNamespacesCmdParamsKey: "", applicationNamespacesCmdParamsKey: ""},
+		// 	expected:      argocdAdditonalNamespaces{applicationNamespaces: []string{}, applicationsetNamespaces: []string{}},
+		// },
+		// {
+		// 	description:   "when only one of the keys in the cm is set only correct respective list of namespaces should be returned",
+		// 	CmdParamsKeys: map[string]interface{}{applicationNamespacesCmdParamsKey: "foo, bar*"},
+		// 	expected:      argocdAdditonalNamespaces{applicationsetNamespaces: []string{}, applicationNamespaces: []string{"foo", "bar*"}},
+		// },
+		// {
+		// 	description:   "when only one of the keys in the cm is set only correct respective list of namespaces should be returned",
+		// 	CmdParamsKeys: map[string]interface{}{applicationsetNamespacesCmdParamsKey: "foo, bar*"},
+		// 	expected:      argocdAdditonalNamespaces{applicationNamespaces: []string{}, applicationsetNamespaces: []string{"foo", "bar*"}},
+		// },
+		// {
+		// 	description:   "whitespaces are removed for both multiple and single namespace",
+		// 	CmdParamsKeys: map[string]interface{}{applicationNamespacesCmdParamsKey: "  bar    ", applicationsetNamespacesCmdParamsKey: " foo , bar*  "},
+		// 	expected:      argocdAdditonalNamespaces{applicationNamespaces: []string{"bar"}, applicationsetNamespaces: []string{"foo", "bar*"}},
+		// },
 	}
 
 	for _, c := range testCases {

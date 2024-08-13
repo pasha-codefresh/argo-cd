@@ -260,14 +260,10 @@ func getAdditionalNamespaces(ctx context.Context, argocdClientsets *argoCDClient
 
 	if strNamespaces, ok := cm.Data[applicationNamespacesCmdParamsKey]; ok {
 		applicationNamespaces = namespacesListFromString(strNamespaces)
-	} else {
-		applicationNamespaces = []string{}
 	}
 
 	if strNamespaces, ok := cm.Data[applicationsetNamespacesCmdParamsKey]; ok {
 		applicationsetNamespaces = namespacesListFromString(strNamespaces)
-	} else {
-		applicationsetNamespaces = []string{}
 	}
 
 	return &argocdAdditonalNamespaces{
