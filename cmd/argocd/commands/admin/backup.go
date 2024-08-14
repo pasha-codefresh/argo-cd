@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"k8s.io/apimachinery/pkg/runtime/schema"
 	"os"
 
 	"github.com/argoproj/gitops-engine/pkg/utils/kube"
@@ -59,6 +60,25 @@ func NewExportCommand() *cobra.Command {
 			}
 
 			acdClients := newArgoCDClientsets(config, namespace)
+
+			dynamicIf, err := dynamic.NewForConfig(config)
+
+			podGVR := schema.GroupVersionResource{
+				Group:    "",    // Pods are part of the core API group, so this is empty
+				Version:  "v1",  // Pods are in version v1
+				Resource: "pods", // The resource type is "pods"
+			}
+			
+			pods, err := dynamicIf.Resource(podGVR).Namespace("default").List(ctx, v1.ListOptions{})
+			errors.CheckError(err)
+			
+			fmt.Printf("pods: %v\n", pods.Items)
+			
+			configmaps, err := acdClients.configMaps.List(ctx, v1.ListOptions{})
+			errors.CheckError(err)
+			
+			fmt.Printf("configmaps: %v\n", configmaps.Items)
+			
 			acdConfigMap, err := acdClients.configMaps.Get(ctx, common.ArgoCDConfigMapName, v1.GetOptions{})
 			errors.CheckError(err)
 			export(writer, *acdConfigMap, namespace)
