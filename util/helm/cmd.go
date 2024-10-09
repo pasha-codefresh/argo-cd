@@ -340,7 +340,6 @@ type TemplateOpts struct {
 	// spec.source.helm.values/valuesObject.
 	ExtraValues pathutil.ResolvedFilePath
 	SkipCrds    bool
-	SkipTests   bool
 }
 
 func cleanSetParameters(val string) string {
@@ -408,9 +407,6 @@ func (c *Cmd) template(chartPath string, opts *TemplateOpts) (string, string, er
 	}
 	if !opts.SkipCrds {
 		args = append(args, "--include-crds")
-	}
-	if opts.SkipTests {
-		args = append(args, "--skip-tests")
 	}
 
 	out, command, err := c.run(args...)

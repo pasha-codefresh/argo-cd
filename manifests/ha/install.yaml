@@ -304,10 +304,6 @@ spec:
                             description: SkipCrds skips custom resource definition
                               installation step (Helm's --skip-crds)
                             type: boolean
-                          skipTests:
-                            description: SkipTests skips test manifest installation
-                              step (Helm's --skip-tests).
-                            type: boolean
                           valueFiles:
                             description: ValuesFiles is a list of Helm value files
                               to use when generating a template
@@ -673,10 +669,6 @@ spec:
                             skipCrds:
                               description: SkipCrds skips custom resource definition
                                 installation step (Helm's --skip-crds)
-                              type: boolean
-                            skipTests:
-                              description: SkipTests skips test manifest installation
-                                step (Helm's --skip-tests).
                               type: boolean
                             valueFiles:
                               description: ValuesFiles is a list of Helm value files
@@ -1159,10 +1151,6 @@ spec:
                         description: SkipCrds skips custom resource definition installation
                           step (Helm's --skip-crds)
                         type: boolean
-                      skipTests:
-                        description: SkipTests skips test manifest installation step
-                          (Helm's --skip-tests).
-                        type: boolean
                       valueFiles:
                         description: ValuesFiles is a list of Helm value files to
                           use when generating a template
@@ -1519,10 +1507,6 @@ spec:
                         skipCrds:
                           description: SkipCrds skips custom resource definition installation
                             step (Helm's --skip-crds)
-                          type: boolean
-                        skipTests:
-                          description: SkipTests skips test manifest installation
-                            step (Helm's --skip-tests).
                           type: boolean
                         valueFiles:
                           description: ValuesFiles is a list of Helm value files to
@@ -2046,10 +2030,6 @@ spec:
                               description: SkipCrds skips custom resource definition
                                 installation step (Helm's --skip-crds)
                               type: boolean
-                            skipTests:
-                              description: SkipTests skips test manifest installation
-                                step (Helm's --skip-tests).
-                              type: boolean
                             valueFiles:
                               description: ValuesFiles is a list of Helm value files
                                 to use when generating a template
@@ -2418,10 +2398,6 @@ spec:
                               skipCrds:
                                 description: SkipCrds skips custom resource definition
                                   installation step (Helm's --skip-crds)
-                                type: boolean
-                              skipTests:
-                                description: SkipTests skips test manifest installation
-                                  step (Helm's --skip-tests).
                                 type: boolean
                               valueFiles:
                                 description: ValuesFiles is a list of Helm value files
@@ -2937,10 +2913,6 @@ spec:
                                     description: SkipCrds skips custom resource definition
                                       installation step (Helm's --skip-crds)
                                     type: boolean
-                                  skipTests:
-                                    description: SkipTests skips test manifest installation
-                                      step (Helm's --skip-tests).
-                                    type: boolean
                                   valueFiles:
                                     description: ValuesFiles is a list of Helm value
                                       files to use when generating a template
@@ -3327,10 +3299,6 @@ spec:
                                     skipCrds:
                                       description: SkipCrds skips custom resource
                                         definition installation step (Helm's --skip-crds)
-                                      type: boolean
-                                    skipTests:
-                                      description: SkipTests skips test manifest installation
-                                        step (Helm's --skip-tests).
                                       type: boolean
                                     valueFiles:
                                       description: ValuesFiles is a list of Helm value
@@ -3836,10 +3804,6 @@ spec:
                                 description: SkipCrds skips custom resource definition
                                   installation step (Helm's --skip-crds)
                                 type: boolean
-                              skipTests:
-                                description: SkipTests skips test manifest installation
-                                  step (Helm's --skip-tests).
-                                type: boolean
                               valueFiles:
                                 description: ValuesFiles is a list of Helm value files
                                   to use when generating a template
@@ -4220,10 +4184,6 @@ spec:
                                 skipCrds:
                                   description: SkipCrds skips custom resource definition
                                     installation step (Helm's --skip-crds)
-                                  type: boolean
-                                skipTests:
-                                  description: SkipTests skips test manifest installation
-                                    step (Helm's --skip-tests).
                                   type: boolean
                                 valueFiles:
                                   description: ValuesFiles is a list of Helm value
@@ -4750,10 +4710,6 @@ spec:
                                 description: SkipCrds skips custom resource definition
                                   installation step (Helm's --skip-crds)
                                 type: boolean
-                              skipTests:
-                                description: SkipTests skips test manifest installation
-                                  step (Helm's --skip-tests).
-                                type: boolean
                               valueFiles:
                                 description: ValuesFiles is a list of Helm value files
                                   to use when generating a template
@@ -5134,10 +5090,6 @@ spec:
                                 skipCrds:
                                   description: SkipCrds skips custom resource definition
                                     installation step (Helm's --skip-crds)
-                                  type: boolean
-                                skipTests:
-                                  description: SkipTests skips test manifest installation
-                                    step (Helm's --skip-tests).
                                   type: boolean
                                 valueFiles:
                                   description: ValuesFiles is a list of Helm value
@@ -5627,8 +5579,6 @@ spec:
                                           type: string
                                         skipCrds:
                                           type: boolean
-                                        skipTests:
-                                          type: boolean
                                         valueFiles:
                                           items:
                                             type: string
@@ -5858,8 +5808,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -6065,8 +6013,6 @@ spec:
                       type: object
                     clusters:
                       properties:
-                        flatList:
-                          type: boolean
                         selector:
                           properties:
                             matchExpressions:
@@ -6254,8 +6200,6 @@ spec:
                                         releaseName:
                                           type: string
                                         skipCrds:
-                                          type: boolean
-                                        skipTests:
                                           type: boolean
                                         valueFiles:
                                           items:
@@ -6486,8 +6430,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -6882,8 +6824,6 @@ spec:
                                           type: string
                                         skipCrds:
                                           type: boolean
-                                        skipTests:
-                                          type: boolean
                                         valueFiles:
                                           items:
                                             type: string
@@ -7113,8 +7053,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -7489,8 +7427,6 @@ spec:
                                           type: string
                                         skipCrds:
                                           type: boolean
-                                        skipTests:
-                                          type: boolean
                                         valueFiles:
                                           items:
                                             type: string
@@ -7720,8 +7656,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -8121,8 +8055,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -8352,8 +8284,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -8559,8 +8489,6 @@ spec:
                                 type: object
                               clusters:
                                 properties:
-                                  flatList:
-                                    type: boolean
                                   selector:
                                     properties:
                                       matchExpressions:
@@ -8748,8 +8676,6 @@ spec:
                                                   releaseName:
                                                     type: string
                                                   skipCrds:
-                                                    type: boolean
-                                                  skipTests:
                                                     type: boolean
                                                   valueFiles:
                                                     items:
@@ -8980,8 +8906,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -9376,8 +9300,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -9607,8 +9529,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -9983,8 +9903,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -10214,8 +10132,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -10598,8 +10514,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -10829,8 +10743,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -11432,8 +11344,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -11663,8 +11573,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -12261,8 +12169,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -12492,8 +12398,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -12885,8 +12789,6 @@ spec:
                                           type: string
                                         skipCrds:
                                           type: boolean
-                                        skipTests:
-                                          type: boolean
                                         valueFiles:
                                           items:
                                             type: string
@@ -13116,8 +13018,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -13519,8 +13419,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -13750,8 +13648,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -13957,8 +13853,6 @@ spec:
                                 type: object
                               clusters:
                                 properties:
-                                  flatList:
-                                    type: boolean
                                   selector:
                                     properties:
                                       matchExpressions:
@@ -14146,8 +14040,6 @@ spec:
                                                   releaseName:
                                                     type: string
                                                   skipCrds:
-                                                    type: boolean
-                                                  skipTests:
                                                     type: boolean
                                                   valueFiles:
                                                     items:
@@ -14378,8 +14270,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -14774,8 +14664,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -15005,8 +14893,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -15381,8 +15267,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -15612,8 +15496,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -15996,8 +15878,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -16227,8 +16107,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -16830,8 +16708,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -17061,8 +16937,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -17659,8 +17533,6 @@ spec:
                                                     type: string
                                                   skipCrds:
                                                     type: boolean
-                                                  skipTests:
-                                                    type: boolean
                                                   valueFiles:
                                                     items:
                                                       type: string
@@ -17890,8 +17762,6 @@ spec:
                                                     releaseName:
                                                       type: string
                                                     skipCrds:
-                                                      type: boolean
-                                                    skipTests:
                                                       type: boolean
                                                     valueFiles:
                                                       items:
@@ -18287,8 +18157,6 @@ spec:
                                           type: string
                                         skipCrds:
                                           type: boolean
-                                        skipTests:
-                                          type: boolean
                                         valueFiles:
                                           items:
                                             type: string
@@ -18518,8 +18386,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -18901,8 +18767,6 @@ spec:
                                           type: string
                                         skipCrds:
                                           type: boolean
-                                        skipTests:
-                                          type: boolean
                                         valueFiles:
                                           items:
                                             type: string
@@ -19132,8 +18996,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -19735,8 +19597,6 @@ spec:
                                           type: string
                                         skipCrds:
                                           type: boolean
-                                        skipTests:
-                                          type: boolean
                                         valueFiles:
                                           items:
                                             type: string
@@ -19966,8 +19826,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -20564,8 +20422,6 @@ spec:
                                           type: string
                                         skipCrds:
                                           type: boolean
-                                        skipTests:
-                                          type: boolean
                                         valueFiles:
                                           items:
                                             type: string
@@ -20795,8 +20651,6 @@ spec:
                                           releaseName:
                                             type: string
                                           skipCrds:
-                                            type: boolean
-                                          skipTests:
                                             type: boolean
                                           valueFiles:
                                             items:
@@ -21263,8 +21117,6 @@ spec:
                                 type: string
                               skipCrds:
                                 type: boolean
-                              skipTests:
-                                type: boolean
                               valueFiles:
                                 items:
                                   type: string
@@ -21494,8 +21346,6 @@ spec:
                                 releaseName:
                                   type: string
                                 skipCrds:
-                                  type: boolean
-                                skipTests:
                                   type: boolean
                                 valueFiles:
                                   items:
@@ -23993,12 +23843,6 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: applicationsetcontroller.enable.progressive.syncs
-              name: argocd-cmd-params-cm
-              optional: true
-        - name: ARGOCD_APPLICATIONSET_CONTROLLER_TOKENREF_STRICT_MODE
-          valueFrom:
-            configMapKeyRef:
-              key: applicationsetcontroller.enable.tokenref.strict.mode
               name: argocd-cmd-params-cm
               optional: true
         - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_NEW_GIT_FILE_GLOBBING

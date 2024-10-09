@@ -329,10 +329,7 @@ func ValidateRepo(
 		})
 		return conditions, nil
 	}
-	config, err := cluster.RESTConfig()
-	if err != nil {
-		return nil, fmt.Errorf("error getting cluster REST config: %w", err)
-	}
+	config := cluster.RESTConfig()
 	// nolint:staticcheck
 	cluster.ServerVersion, err = kubectl.GetServerVersion(config)
 	if err != nil {
