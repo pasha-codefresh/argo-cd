@@ -86,41 +86,6 @@ export class ApplicationDetails extends React.Component<RouteComponentProps<{app
 
     constructor(props: RouteComponentProps<{appnamespace: string; name: string}>) {
         super(props);
-        this.state = {
-            page: 0,
-            groupedResources: [],
-            slidingPanelPage: 0,
-            filteredGraph: [],
-            truncateNameOnRight: false,
-            collapsedNodes: [],
-            ...this.getExtensionsState()
-        };
-        if (typeof this.props.match.params.appnamespace === 'undefined') {
-            this.appNamespace = '';
-        } else {
-            this.appNamespace = this.props.match.params.appnamespace;
-        }
-    }
-
-    public componentDidMount() {
-        services.extensions.addEventListener('resource', this.onExtensionsUpdate);
-        services.extensions.addEventListener('appView', this.onExtensionsUpdate);
-        services.extensions.addEventListener('statusPanel', this.onExtensionsUpdate);
-        services.extensions.addEventListener('topBar', this.onExtensionsUpdate);
-    }
-
-    public componentWillUnmount() {
-        services.extensions.removeEventListener('resource', this.onExtensionsUpdate);
-        services.extensions.removeEventListener('appView', this.onExtensionsUpdate);
-        services.extensions.removeEventListener('statusPanel', this.onExtensionsUpdate);
-        services.extensions.removeEventListener('topBar', this.onExtensionsUpdate);
-    }
-
-    private onExtensionsUpdate = () => {
-        this.setState({...this.state, ...this.getExtensionsState()});
-    };
-
-    private getExtensionsState = () => {
         const extensions = services.extensions.getAppViewExtensions();
         const extensionsMap: {[key: string]: AppViewExtension} = {};
         extensions.forEach(ext => {
@@ -136,8 +101,26 @@ export class ApplicationDetails extends React.Component<RouteComponentProps<{app
         topBarActionMenuExts.forEach(ext => {
             topBarActionMenuExtsMap[ext.id] = ext;
         });
-        return {extensions, extensionsMap, statusExtensions, statusExtensionsMap, topBarActionMenuExts, topBarActionMenuExtsMap};
-    };
+        this.state = {
+            page: 0,
+            groupedResources: [],
+            slidingPanelPage: 0,
+            filteredGraph: [],
+            truncateNameOnRight: false,
+            collapsedNodes: [],
+            extensions,
+            extensionsMap,
+            statusExtensions,
+            statusExtensionsMap,
+            topBarActionMenuExts,
+            topBarActionMenuExtsMap
+        };
+        if (typeof this.props.match.params.appnamespace === 'undefined') {
+            this.appNamespace = '';
+        } else {
+            this.appNamespace = this.props.match.params.appnamespace;
+        }
+    }
 
     private get showOperationState() {
         return new URLSearchParams(this.props.history.location.search).get('operation') === 'true';
@@ -313,7 +296,7 @@ export class ApplicationDetails extends React.Component<RouteComponentProps<{app
         const getContentForNonChart = (
             aRevision: string,
             aSourceIndex: number,
-            aVersionId: number,
+            aVersionId: number | null,
             indx: number,
             aSource: models.ApplicationSource,
             sourceHeader?: JSX.Element
@@ -905,7 +888,7 @@ export class ApplicationDetails extends React.Component<RouteComponentProps<{app
                                             {this.selectedExtension !== '' && activeStatusExt?.flyout && <activeStatusExt.flyout application={application} tree={tree} />}
                                         </SlidingPanel>
                                         <SlidingPanel
-                                            isMiddle={activeTopBarActionMenuExt?.isMiddle ?? true}
+                                            isMiddle={activeTopBarActionMenuExt?.isMiddle}
                                             isShown={this.selectedExtension !== '' && activeTopBarActionMenuExt != null && activeTopBarActionMenuExt.flyout != null}
                                             onClose={() => this.setExtensionPanelVisible('')}>
                                             {this.selectedExtension !== '' && activeTopBarActionMenuExt?.flyout && (
