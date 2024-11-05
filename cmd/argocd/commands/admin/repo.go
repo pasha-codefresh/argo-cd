@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/argoproj/argo-cd/v2/cmd/argocd/commands/utils"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	apiv1 "k8s.io/api/core/v1"
@@ -12,7 +13,6 @@ import (
 
 	cmdutil "github.com/argoproj/argo-cd/v2/cmd/util"
 	"github.com/argoproj/argo-cd/v2/common"
-	"github.com/argoproj/argo-cd/v2/util/cli"
 	"github.com/argoproj/argo-cd/v2/util/db"
 	"github.com/argoproj/argo-cd/v2/util/errors"
 	"github.com/argoproj/argo-cd/v2/util/git"
@@ -134,7 +134,7 @@ func NewGenRepoSpecCommand() *cobra.Command {
 			// If the user set a username, but didn't supply password via --password,
 			// then we prompt for it
 			if repoOpts.Repo.Username != "" && repoOpts.Repo.Password == "" {
-				repoOpts.Repo.Password = cli.PromptPassword(repoOpts.Repo.Password)
+				repoOpts.Repo.Password = utils.PromptPassword(repoOpts.Repo.Password)
 			}
 
 			argoCDCM := &apiv1.ConfigMap{

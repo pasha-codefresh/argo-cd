@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"text/tabwriter"
 
+	"github.com/argoproj/argo-cd/v2/cmd/argocd/commands/utils"
 	"github.com/mattn/go-isatty"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc/codes"
@@ -18,7 +19,6 @@ import (
 	"github.com/argoproj/argo-cd/v2/pkg/apiclient/applicationset"
 	arogappsetv1 "github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
 	"github.com/argoproj/argo-cd/v2/util/argo"
-	"github.com/argoproj/argo-cd/v2/util/cli"
 	"github.com/argoproj/argo-cd/v2/util/errors"
 	"github.com/argoproj/argo-cd/v2/util/grpc"
 	argoio "github.com/argoproj/argo-cd/v2/util/io"
@@ -362,10 +362,10 @@ func NewApplicationSetDeleteCommand(clientOpts *argocdclient.ClientOptions) *cob
 				if isTerminal && !noPrompt {
 					var lowercaseAnswer string
 					if numOfApps == 1 {
-						lowercaseAnswer = cli.AskToProceedS("Are you sure you want to delete '" + appSetQualifiedName + "' and all its Applications? [y/n] ")
+						lowercaseAnswer = utils.AskToProceedS("Are you sure you want to delete '" + appSetQualifiedName + "' and all its Applications? [y/n] ")
 					} else {
 						if !isConfirmAll {
-							lowercaseAnswer = cli.AskToProceedS("Are you sure you want to delete '" + appSetQualifiedName + "' and all its Applications? [y/n/A] where 'A' is to delete all specified ApplicationSets and their Applications without prompting")
+							lowercaseAnswer = utils.AskToProceedS("Are you sure you want to delete '" + appSetQualifiedName + "' and all its Applications? [y/n/A] where 'A' is to delete all specified ApplicationSets and their Applications without prompting")
 							if lowercaseAnswer == "a" || lowercaseAnswer == "all" {
 								lowercaseAnswer = "y"
 								isConfirmAll = true

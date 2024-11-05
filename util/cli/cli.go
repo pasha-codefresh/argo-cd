@@ -3,7 +3,6 @@
 package cli
 
 import (
-	"bufio"
 	"bytes"
 	"flag"
 	"fmt"
@@ -18,7 +17,6 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-	terminal "golang.org/x/term"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/klog/v2"
@@ -77,98 +75,6 @@ func AddKubectlFlagsToSet(flags *pflag.FlagSet) clientcmd.ClientConfig {
 	flags.StringVar(&loadingRules.ExplicitPath, "kubeconfig", "", "Path to a kube config. Only required if out-of-cluster")
 	clientcmd.BindOverrideFlags(&overrides, flags, kflags)
 	return clientcmd.NewInteractiveDeferredLoadingClientConfig(loadingRules, &overrides, os.Stdin)
-}
-
-// PromptCredentials is a helper to prompt the user for a username and password (unless already supplied)
-func PromptCredentials(username, password string) (string, string) {
-	return PromptUsername(username), PromptPassword(password)
-}
-
-// PromptUsername prompts the user for a username value
-func PromptUsername(username string) string {
-	return PromptMessage("Username", username)
-}
-
-// PromptMessage prompts the user for a value (unless already supplied)
-func PromptMessage(message, value string) string {
-	for value == "" {
-		reader := bufio.NewReader(os.Stdin)
-		fmt.Print(message + ": ")
-		valueRaw, err := reader.ReadString('\n')
-		errors.CheckError(err)
-		value = strings.TrimSpace(valueRaw)
-	}
-	return value
-}
-
-// PromptPassword prompts the user for a password, without local echo. (unless already supplied)
-func PromptPassword(password string) string {
-	for password == "" {
-		fmt.Print("Password: ")
-		passwordRaw, err := terminal.ReadPassword(int(os.Stdin.Fd()))
-		errors.CheckError(err)
-		password = string(passwordRaw)
-		fmt.Print("\n")
-	}
-	return password
-}
-
-// AskToProceed prompts the user with a message (typically a yes or no question) and returns whether
-// they responded in the affirmative or negative.
-func AskToProceed(message string) bool {
-	for {
-		fmt.Print(message)
-		reader := bufio.NewReader(os.Stdin)
-		proceedRaw, err := reader.ReadString('\n')
-		errors.CheckError(err)
-		switch strings.ToLower(strings.TrimSpace(proceedRaw)) {
-		case "y", "yes":
-			return true
-		case "n", "no":
-			return false
-		}
-	}
-}
-
-// AskToProceedS prompts the user with a message (typically a yes, no or all question) and returns string
-// "a", "y" or "n".
-func AskToProceedS(message string) string {
-	for {
-		fmt.Print(message)
-		reader := bufio.NewReader(os.Stdin)
-		proceedRaw, err := reader.ReadString('\n')
-		errors.CheckError(err)
-		switch strings.ToLower(strings.TrimSpace(proceedRaw)) {
-		case "y", "yes":
-			return "y"
-		case "n", "no":
-			return "n"
-		case "a", "all":
-			return "a"
-		}
-	}
-}
-
-// ReadAndConfirmPassword is a helper to read and confirm a password from stdin
-func ReadAndConfirmPassword(username string) (string, error) {
-	for {
-		fmt.Printf("*** Enter new password for user %s: ", username)
-		password, err := terminal.ReadPassword(int(os.Stdin.Fd()))
-		if err != nil {
-			return "", err
-		}
-		fmt.Print("\n")
-		fmt.Printf("*** Confirm new password for user %s: ", username)
-		confirmPassword, err := terminal.ReadPassword(int(os.Stdin.Fd()))
-		if err != nil {
-			return "", err
-		}
-		fmt.Print("\n")
-		if string(password) == string(confirmPassword) {
-			return string(password), nil
-		}
-		log.Error("Passwords do not match")
-	}
 }
 
 // SetLogFormat sets a logrus log format
