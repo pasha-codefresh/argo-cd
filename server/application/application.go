@@ -1895,6 +1895,9 @@ func (s *Server) PodLogs(q *application.ApplicationPodLogsQuery, ws application.
 			}
 			close(logStream)
 		}()
+
+		close(logStream)
+		println("closed log stream")
 	}
 
 	if q.GetPrevious() && streamOpenErrCount == len(pods) && firstStreamOpenErr != nil {
