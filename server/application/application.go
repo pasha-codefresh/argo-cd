@@ -1866,6 +1866,8 @@ func (s *Server) PodLogs(q *application.ApplicationPodLogsQuery, ws application.
 	}
 
 	var streams []chan logEntry
+	var streamOpenErrCount int
+	var firstStreamOpenErr error
 
 	for _, pod := range pods {
 		stream, err := kubeClientset.CoreV1().Pods(pod.Namespace).GetLogs(pod.Name, &corev1.PodLogOptions{
@@ -1877,6 +1879,12 @@ func (s *Server) PodLogs(q *application.ApplicationPodLogsQuery, ws application.
 			TailLines:    tailLines,
 			Previous:     q.GetPrevious(),
 		}).Stream(ws.Context())
+		if err != nil {
+			streamOpenErrCount++
+			if firstStreamOpenErr == nil {
+				firstStreamOpenErr = err
+			}
+		}
 		podName := pod.Name
 		logStream := make(chan logEntry)
 		if err == nil {
@@ -1894,6 +1902,13 @@ func (s *Server) PodLogs(q *application.ApplicationPodLogsQuery, ws application.
 			}
 			close(logStream)
 		}()
+
+		close(logStream)
+		println("closed log stream")
+	}
+
+	if q.GetPrevious() && streamOpenErrCount == len(pods) && firstStreamOpenErr != nil {
+		return status.Error(codes.InvalidArgument, firstStreamOpenErr.Error())
 	}
 
 	logStream := mergeLogStreams(streams, time.Millisecond*100)
